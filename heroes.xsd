@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+    <xs:simpleType name="stat">
+        <xs:restriction base="xs:decimal">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="gender">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="male"/>
+            <xs:enumeration value="female"/>
+            <xs:enumeration value="-"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="unitType">
+        <xs:restriction base="xs:string">
+            <xs:length value="2"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="measurement">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="feet-inches"/>
+            <xs:enumeration value="lb"/>
+            <xs:enumeration value="kg"/>
+            <xs:enumeration value="cm"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="alignment">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="good"/>
+            <xs:enumeration value="bad"/>
+            <xs:enumeration value="neutral"/>
+            <xs:enumeration value="-"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:element name="heroes">
+        <xs:complexType>
+            <xs:sequence maxOccurs="unbounded">
+                <xs:element ref="hero"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="hero">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="slug" type="xs:string"/>
+                <xs:element ref="powerstats"/>
+                <xs:element ref="appearance"/>
+                <xs:element ref="biography"/>
+                <xs:element ref="work"/>
+                <xs:element ref="connections"/>
+                <xs:element ref="images"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:nonNegativeInteger"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="powerstats">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="intelligence" type="stat"/>
+                <xs:element name="strength" type="stat"/>
+                <xs:element name="speed" type="stat"/>
+                <xs:element name="durability" type="stat"/>
+                <xs:element name="power" type="stat"/>
+                <xs:element name="combat" type="stat"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="appearance">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="gender" type="gender"/>
+                <xs:element name="race" type="xs:string"/>
+                <xs:element ref="height"/>
+                <xs:element ref="weight"/>
+                <xs:element name="eyeColor" type="xs:string"/>
+                <xs:element name="hairColor" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="biography">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="fullName" type="xs:string"/>
+                <xs:element name="alterEgos" type="xs:string"/>
+                <xs:element name="aliases">
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="unbounded">
+                            <xs:element name="alias" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="placeOfBirth" type="xs:string"/>
+                <xs:element name="firstAppearance" type="xs:string"/>
+                <xs:element name="publisher" type="xs:string"/>
+                <xs:element name="alignment" type="alignment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="group">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="relation" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="relative">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="relation" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="work">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element name="occupations">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xs:element name="occupation" type="xs:string"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="base" type="xs:string" use="optional"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="connections">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element name="groupAffiliation">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xs:element ref="group"/>
+                        </xs:sequence>
+                        <xs:attribute name="relation" type="xs:string" use="optional"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="relatives">
+                    <xs:complexType>
+                        <xs:sequence minOccurs="0" maxOccurs="unbounded">
+                            <xs:element ref="relative"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="images">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element name="xs" type="xs:anyURI"/>
+                <xs:element name="sm" type="xs:anyURI"/>
+                <xs:element name="md" type="xs:anyURI"/>
+                <xs:element name="lg" type="xs:anyURI"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="height">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element name="usHeight">
+                    <xs:complexType>
+                        <xs:sequence maxOccurs="1">
+                            <xs:element name="feet" type="xs:nonNegativeInteger"/>
+                            <xs:element name="inches" type="xs:nonNegativeInteger"/>
+                        </xs:sequence>
+                        <xs:attribute name="measurement" type="measurement"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="euHeight">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:nonNegativeInteger">
+                                <xs:attribute name="measurement" type="measurement"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="weight">
+        <xs:complexType>
+            <xs:sequence maxOccurs="1">
+                <xs:element name="usWeight">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:nonNegativeInteger">
+                                <xs:attribute name="measurement" type="measurement"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="euWeight">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:nonNegativeInteger">
+                                <xs:attribute name="measurement" type="measurement"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
