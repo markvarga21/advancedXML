@@ -1,21 +1,21 @@
-### Egyetlen atomi értéket visszaadó lekérdezés
+### Queries which has an atomic value as its output.
 
-Feladat: `ex2.xquery`.
+Exercises: `ex2.xquery`.
 
-### XML dokumentumot visszaadó lekérdezések
+### Queries with validated XML output.
 
-Feladatok: `ex1.xquery`, `ex3.xquery`, `ex4.xquery`, `ex5.xquery`, `ex6.xquery`, `ex7.xquery`.
+Exercises: `ex1.xquery`, `ex3.xquery`, `ex4.xquery`, `ex5.xquery`, `ex6.xquery`, `ex7.xquery`.
 
-### Tömböt, vagy JSON objektumot visszaadó lekérdezések
+### Queries which give back JSON array or object as their output.
 
-Feladatok: `ex8.xquery`, `ex9.xquery`.
+Exercises: `ex8.xquery`, `ex9.xquery`.
 
-### HTML dokumentumot visszaadó lekérdezés
+### Queries producing HTML output.
 
-Feladat: `ex10.xquery`.
+Exercises: `ex10.xquery`.
 
-### Egyebek
+### Others.
 
-A `utils.xquery` állomány tulajdonképpen kisegítő függvényeket tartalmaz az eredeti `heroes.json` fájl, egy egyedi XML fájllá való alakításához. Ezen célra a `utils-exec.xuqery` fájl volt felhasználva.
+The `utils.xquery` file basically contains helper functions to transform the original `heroes.json` file into a custom XML file. For this purpose, the `utils-exec.xuqery` file was used.
 
-**Megjegyzések**: ha nem működne a _Saxon-EE_ engine-nel az `utils-exec.xquery` futtatása, akkor kérem használja a _BaseX_ engine-t.
+**Notes**: if the `utils-exec.xquery` is not working with _Saxon-EE_ engine, then try using the _BaseX_ engine.
